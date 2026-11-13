@@ -1,0 +1,90 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{homework}[2026/11/01 Jonathan Nguyen's homework]
+
+\RequirePackage[margin=1in]{geometry}
+\RequirePackage{amsmath, amssymb, amsthm}
+\RequirePackage{lmodern}
+\RequirePackage{parskip}
+\RequirePackage{xcolor}
+
+\newcommand*{\course}[1]{\def\hw@course{#1}}
+\newcommand*{\term}[1]{\def\hw@term{#1}}
+\course{}
+\term{}
+
+% Author and term on the left, course and assignment on the right, over a rule.
+% The header prints itself at \begin{document}, so \maketitle is optional.
+\newcommand{\hw@header}{%
+    \noindent
+    \begin{tabular}[b]{@{}l@{}}
+        \textbf{\@author} \\
+        \hw@term
+    \end{tabular}\hfill
+    \begin{tabular}[b]{@{}r@{}}
+        \textbf{\hw@course\ifx\hw@course\@empty\else\ -- \fi\@title}
+    \end{tabular}\par
+    \nointerlineskip\vspace{1pt}\hrule\vspace{16pt}%
+}
+\AddToHook{begindocument/end}{\hw@header}
+\renewcommand{\maketitle}{}
+\pagestyle{plain}
+
+% Subsections run into the text and are lettered (a), (b), ...
+\renewcommand{\section}{\@startsection{section}{1}{\z@}%
+    {-3ex \@plus -1ex \@minus -.2ex}{2ex \@plus .2ex}{\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+    {-1.5ex \@plus -.5ex \@minus -.2ex}{-0.5em}{\normalfont\bfseries}}
+\renewcommand{\thesubsection}{(\alph{subsection})}
+
+\newcounter{problem}
+\newif\ifhw@separate
+
+% Problems after the first are set off by a short centered rule.
+% \begin{problem} numbers itself; \begin{problem}[19.4] uses the given number.
+\NewDocumentEnvironment{problem}{o}{%
+    \ifhw@separate
+        \par\vspace{18pt}\centerline{\rule{0.65\textwidth}{0.4pt}}\vspace{6pt}%
+    \fi
+    \global\hw@separatetrue
+    \IfNoValueT{#1}{\stepcounter{problem}}%
+    \setcounter{subsection}{0}%
+    \section*{Problem \IfValueTF{#1}{#1}{\theproblem}}%
+}{\par}
+
+% A part whose statement stays in regular type, lettered along with \subsection.
+\NewDocumentEnvironment{subproblem}{o}{%
+    \IfValueTF{#1}{\subsection*{(#1)}}{\stepcounter{subsection}\subsection*{\thesubsection}}%
+}{\par}
+
+% One font setting for solution, proof, and claim bodies. Examples:
+% \solutionfont{\rmfamily}       Latin Modern, like the problem text (default)
+% \solutionfont{\sffamily}       clean sans serif
+% \solutionfont{\sffamily\large} larger sans serif
+\newcommand{\solutionfont}[1]{\def\hw@solutionfont{#1}}
+\solutionfont{\rmfamily}
+
+% Additional styling, applied after the font. Existing uses still work,
+% e.g. \solutionstyle{\color{blue}} or \solutionstyle{\rmfamily\itshape}.
+\newcommand{\solutionstyle}[1]{\def\hw@solutionstyle{#1}}
+\solutionstyle{\color{blue!50!black}}
+\newcommand{\hw@answerstyle}{\normalfont\hw@solutionfont\hw@solutionstyle}
+
+\newtheoremstyle{claim}{.5\topsep}{.5\topsep}{\hw@answerstyle}{}{\normalfont\normalcolor\bfseries}{.}{5pt plus 1pt minus 1pt}{}
+\theoremstyle{claim}
+\newtheorem*{claim}{Claim}
+
+\expandafter\let\expandafter\hw@proof\csname\string\proof\endcsname
+\let\hw@endproof\endproof
+\renewenvironment{proof}[1][\proofname]
+    {\hw@proof[\normalfont\normalcolor\bfseries #1]\hw@answerstyle\ignorespaces}
+    {\hw@endproof}
+
+% A bold label on its own line marks the start of the answer. Keep it with
+% the following paragraph, and flush any pending run-in part heading first.
+\newenvironment{solution}
+    {\if@noskipsec\leavevmode\fi\par\addvspace{.75\baselineskip}%
+     \noindent{\normalfont\normalcolor\bfseries Solution.}\par\nobreak
+     \hw@answerstyle\@afterindentfalse\@afterheading\ignorespaces}
+    {\par\addvspace{.5\baselineskip}\ignorespacesafterend}
+
+\endinput

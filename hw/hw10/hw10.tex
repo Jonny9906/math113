@@ -1,0 +1,163 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{homework}
+
+\course{Math 113: Abstract Algebra}
+\term{Fall 2026}
+\title{Homework 10}
+\author{Jonathan Nguyen}
+
+\begin{document}
+
+\begin{problem}[22.4]
+Find the sum and the product of $f(x) = 2x^3 + 4x^2 + 3x + 2$,
+$g(x) = 3x^4 + 2x + 4$ in $\mathbb{Z}_5[x]$.
+\end{problem}
+
+\begin{solution}
+\begin{align*}
+    f(x) + g(x) &= 3x^4 + 2x^3 + 4x^2 + 1 \\
+    f(x) \cdot g(x) &= x^7 + 2x^6 + 4x^5 + x^3 + 2x^2 + x + 3
+\end{align*}
+\end{solution}
+
+\begin{problem}[22.10]
+$F = E = \mathbb{Z}_7$. Compute the evaluation homomorphism
+$\phi_5[(x^3 + 2)(4x^2 + 3)(x^7 + 3x^2 + 1)]$.
+\end{problem}
+
+\begin{solution}
+Since $\phi_5$ is a homomorphism, we can evaluate each factor separately:
+\begin{align*}
+\phi_5[(x^3 + 2)(4x^2 + 3)(x^7 + 3x^2 + 1)]
+&= \phi_5(x^3 + 2)\,\phi_5(4x^2 + 3)\,\phi_5(x^7 + 3x^2 + 1) \\
+&= (5^3 + 2)(4 \cdot 5^2 + 3)(5^7 + 3 \cdot 5^2 + 1) \\
+&\equiv (6 + 2)(2 + 3)(5 + 5 + 1) \pmod{7} \\
+&\equiv (1)(5)(4) = 20 \equiv 6 \pmod{7},
+\end{align*}
+where $5^7 \equiv 5 \pmod{7}$ by Fermat's little theorem.
+\[
+\boxed{\phi_5[(x^3 + 2)(4x^2 + 3)(x^7 + 3x^2 + 1)] = 6}
+\]
+\end{solution}
+
+\begin{problem}[22.14]
+Find all the zeros of $x^5 + 3x^3 + x^2 + 2x$ in $\mathbb{Z}_5$.
+\end{problem}
+
+\begin{solution}
+To find the zeros of $f(x)$, we must find the values $\alpha$ so that
+$f(\alpha) = 0$.
+We can factor $f(x) = x(x^4 + 3x^2 + x + 2)$.
+We will exhaust all elements in $\mathbb{Z}_5$.
+\begin{align*}
+    f(0) &= (0)(0^4 + 3(0)^2 + 0 + 2) = 0 \\
+    f(1) &= (1)(1 + 3 + 1 + 2) = 7 \equiv 2 \pmod{5} \\
+    f(2) &= (2)(16 + 12 + 2 + 2) = 64 \equiv 4 \pmod{5} \\
+    f(3) &\equiv (3)(1 + 27 + 3 + 2) = (3)(33) \equiv 4 \pmod{5} \\
+    f(4) &= 4(256 + 48 + 4 + 2) = (4)(310) \equiv 0 \pmod{5}
+\end{align*}
+For $f(3)$, we can use Fermat's little theorem to show that
+$3^4 \equiv 1 \pmod{5}$.
+Therefore the zeros of $x^5 + 3x^3 + x^2 + 2x$ in $\mathbb{Z}_5$ are 0 and 4.
+\end{solution}
+
+\begin{problem}[22.24]
+Prove that if $D$ is an integral domain, then $D[x]$ is an integral domain.
+\end{problem}
+
+\begin{solution}
+Since $D$ is an integral domain, we know that $D[x]$ is a commutative ring
+with unity $1 \neq 0$ according to Theorem 22.2.
+
+We therefore only need to show that $D[x]$ does not have any zero divisors.
+
+Let $f(x) = a_0 + a_1x + a_2x^2 + \cdots$ and
+$g(x) = b_0 + b_1x + b_2x^2 + \cdots$ be nonzero.
+Let $h(x) = f(x) \cdot g(x)$, whose coefficient of $x^n$ is
+$c_n = \sum_{i=0}^{n} a_i b_{n-i}$.
+Let $r = \deg(f(x))$ and $t = \deg(g(x))$. Consider the coefficient $c_{r+t}$.
+Using the formula, we find that $c_{r+t} = a_rb_t + 0 + 0 + \cdots$.
+Since $a_r$ and $b_t$ are the leading coefficients in their respective
+polynomials, all of the other terms in the summation are multiplied by 0.
+If $i > r$, $a_i = 0$, meaning that multiplying $a_i$ with any other
+coefficient cancels out to 0.
+When $i < r$, we will need a $k > t$ such that $i + k = r + t$.
+Since $b_t$ is the leading coefficient, $b_k = 0$, meaning $a_ib_k = 0$.
+Thus $c_{r+t} = a_rb_t \neq 0$, since $a_r$ and $b_t$ are nonzero
+and $D$ has no zero divisors. We can now conclude that multiplying two
+nonzero polynomials will never result in the zero polynomial and in turn,
+$D[x]$ is an integral domain.
+\end{solution}
+
+\begin{problem}[23.2]
+For the polynomial $f(x) = x^6 + 3x^5 + 4x^2 - 3x + 2$ and
+$g(x) = 3x^2 + 2x - 3$, find $q(x)$ and $r(x)$ as described by the
+division algorithm so that $f(x) = g(x)q(x) + r(x)$ with $r(x) = 0$
+or of degree less than the degree of $g(x)$.
+\end{problem}
+
+\begin{solution}
+In $\mathbb{Z}_7[x]$, reduce the coefficients modulo $7$ after each subtraction.
+\[
+\setlength{\arraycolsep}{3pt}
+\begin{array}{r*{7}{r}}
+    & \multicolumn{7}{l}{5x^4 + 5x^2 + 6x} \\
+    \cline{2-8}
+    \multicolumn{1}{r|}{3x^2 + 2x - 3}
+        & x^6 & +3x^5 &       &       & +4x^2 & +4x & +2 \\
+    \cline{1-1}
+        & x^6 & +3x^5 & +6x^4 &       &       &     &    \\
+    \cline{2-4}
+        &     &       & x^4   &       & +4x^2 & +4x & +2 \\
+        &     &       & x^4   & +3x^3 & +6x^2 &     &    \\
+    \cline{4-6}
+        &     &       &       & 4x^3  & +5x^2 & +4x & +2 \\
+        &     &       &       & 4x^3  & +5x^2 & +3x &    \\
+    \cline{5-7}
+        &     &       &       &       &       & x   & +2
+\end{array}
+\]
+Since $\deg(x+2)=1<2=\deg(g)$, the division stops. Thus
+\[
+\boxed{q(x)=5x^4+5x^2+6x,\qquad r(x)=x+2.}
+\]
+\end{solution}
+
+\begin{problem}[23.10]
+    The polynomial $x^3 + 2x^2 + 2x + 1$ can be factored into linear factors in $\mathbb{Z}_7[x]$. Find this factorization.
+\end{problem}
+\begin{solution}
+    Let $f(x) = x^3 + 2x^2 + 2x + 1$. Since we know the linear factors are in $\mathbb{Z}_7[x]$, we can evaluate $\phi_a(f(x))$ for all $a \in \mathbb{Z}_7$.
+    \begin{align*}
+        0: 0^3 + 2(0)^2 + 2(0) + 1 \equiv 1 \pmod{7}\\
+        1: 1^3 + 2(1)^2 + 2(1) + 1 \equiv 6 \pmod{7}\\
+        2: 2^3 + 2(2)^2 + 2(2) + 1 \equiv 0 \pmod{7}\\
+        3: 3^3 + 2(3)^2 + 2(3) + 1 \equiv 3 \pmod{7}\\
+        4: 4^3 + 2(4)^2 + 2(4) + 1 \equiv 0 \pmod{7}\\
+        5: 5^3 + 2(5)^2 + 2(5) + 1 \equiv 4 \pmod{7}\\
+        6: 6^3 + 2(6)^2 + 2(6) + 1 \equiv 0 \pmod{7}
+    \end{align*}
+    The zeros of $f(x)$ are 2, 4, and 6. Since the number of distinct zeros equals the degree of $f(x)$ and the leading coefficient is 1, we can rewrite $f(x)$ as a product of $(x-a)$, where $a$ are the zeros of $f(x)$.
+    \[
+    \boxed{f(x) = (x-2)(x-4)(x-6) = x^3 + 2x^2 + 2x + 1}
+    \]
+\end{solution}
+\begin{problem}[23.14]
+    Show that $f(x) = x^2 + 8x - 2$ is irreducible over $\mathbb{Q}$. Is $f(x)$ irreducible over $\mathbb{R}$? Over $\mathbb{C}$?
+\end{problem}
+
+\begin{solution}
+    $1 \not\equiv 0 \pmod{2}$, $8 \equiv 0 \pmod{2}$, $-2 \equiv 0 \pmod{2}$, and $-2 \not\equiv 0 \pmod{2^2}$. Therefore, by Eisenstein's criterion with $p = 2$, $f(x)$ is irreducible over $\mathbb{Q}$. 
+    Using the quadratic formula, we see that the zeros of $f(x)$ are $\frac{-8 \pm \sqrt{8^2-4(1)(-2)}}{2(1)} = \frac{-8 \pm \sqrt{72}}{2} \in \mathbb{R}$, and therefore is reducible over $\mathbb{R}$.
+    Since $\mathbb{R} \subset \mathbb{C}$, the zeros in $\mathbb{R}$ are also in $\mathbb{C}$. Therefore $f(x)$ is reducible over $\mathbb{C}$ as well.
+\end{solution}
+
+\begin{problem}[23.20]
+    Determine whether $4x^{10} - 9x^3 + 24x -18$ in $\mathbb{Z}[x]$ satisfies an Eisenstein criterion for irreducibility over $\mathbb{Q}$.
+\end{problem}
+
+\begin{solution}
+    Since the only prime that divides 9 is 3, and since $-18 \equiv 0 \pmod{3^2}$, the Eisenstein criterion is not satisfied.
+\end{solution}
+\end{document}
