@@ -1,0 +1,200 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{homework}
+\course{Math 113: Abstract Algebra}
+\term{Fall 2026}
+\title{Homework 9}
+\author{Jonathan Nguyen}
+
+\begin{document}
+
+\begin{problem}[1]
+\subsection*{a.}
+Show that a number $D$ with $DE \equiv 1 \pmod{\phi(n)}$ always exists. This shows that Alice can always carry out the above procedure.
+
+\begin{solution}
+Let $l = \phi(n)$. Since we know that $E$ is relatively prime to $\phi(n)$ by the choice of $E$, we have
+\begin{align*}
+    E^{\phi(l)} &\equiv 1 \pmod{l}\\
+    E^{\phi(l) - 1}E &\equiv 1 \pmod{l}
+\end{align*}
+by Euler's theorem. Since we know that $\phi(l) \geq 1$, we also know that $\phi(l) - 1 \geq 0$. This means that $E^{\phi(l) - 1}$ is a positive integer, so we can always set $D = E^{\phi(l) - 1} \geq 1$.
+If we substitute values back in, we get that $DE \equiv 1 \pmod{\phi(n)}$, meaning that an integer $D$ always exists to satisfy the condition by Euler's Theorem.
+\end{solution}
+
+\subsection*{b.}
+Show that if $M$ is relatively prime to $n$, then $C^D \equiv M \pmod{n}$.
+
+\begin{solution}
+Since we know that $DE \equiv 1 \pmod{\phi(n)}$, we also know that $DE = 1 + k\phi(n)$ for some integer $k \geq 0$, since $DE \geq 1$.
+Since we also know that $C \equiv M^E \pmod{n}$, we can show the following.
+\begin{align*}
+    C^D &\equiv M^{DE} \pmod{n}\\
+    C^D &\equiv M^{1 + k\phi(n)} \pmod{n}\\
+    C^D &\equiv MM^{k\phi(n)} \pmod{n}
+\end{align*}
+According to Euler's theorem, if $M$ and $n$ are relatively prime, $M^{\phi(n)} \equiv 1 \pmod{n}$.
+Therefore, we can simplify the equation to the following since $n$ and $M$ are coprime.
+\begin{align*}
+    C^D &\equiv M(M^{\phi(n)})^k \pmod{n}\\
+    C^D &\equiv M(1)^k \pmod{n}\\
+    C^D &\equiv M \pmod{n}
+\end{align*}
+\end{solution}
+
+\subsection*{c.}
+Show that, even if $M$ is \emph{not} relatively prime to $n$, we can still have $C^D \equiv M \pmod{n}$.
+Together with part (b), this shows that Alice can always decode Bob's message.
+
+\begin{solution}
+Since $DE \equiv 1 \pmod{\phi(n)}$ and
+$\phi(n) = (p-1)(q-1)$, we can write
+$DE = 1 + k(p-1)(q-1)$ for some integer $k \geq 0$,
+since $D$ is positive and $E > 1$.
+
+Since $q \mid n$, the congruence $C \equiv M^E \pmod{n}$
+implies $C^D \equiv M^{DE} \pmod{q}$.
+If $q \nmid M$, Fermat's Little Theorem gives
+\begin{align*}
+    C^D &\equiv M^{DE} \pmod{q}\\
+    &\equiv M(M^{q-1})^{k(p-1)} \pmod{q}\\
+    &\equiv M(1)^{k(p-1)} \pmod{q}\\
+    &\equiv M \pmod{q}.
+\end{align*}
+If $q \mid M$, then
+$C^D \equiv M^{DE} \equiv 0 \equiv M \pmod{q}$.
+
+The same argument gives $C^D \equiv M \pmod{p}$.
+Thus both $p$ and $q$ divide $C^D - M$. Since they are
+distinct primes, $pq = n$ divides $C^D - M$.
+Therefore, $C^D \equiv M \pmod{n}$.
+\end{solution}
+\end{problem}
+
+\begin{problem}[21.2]
+Describe (in the sense of Exercise 1) the field $F$ of the quotients of the integral subdomain $D = \{n + m\sqrt{2} \mid n, m \in \mathbb{Z}\}$ of $\mathbb{R}$.
+
+\begin{solution}
+$F = \{\frac{n}{q+r\sqrt{2}} + \frac{m}{q+r\sqrt{2}}\sqrt{2}\mid n,m,q,r \in \mathbb{Z}, q+r\sqrt{2}\neq0\}$.
+
+Since $q+r\sqrt{2}\neq0$, we have $(q,r)\neq(0,0)$. If $q^2-2r^2=0$, then $r\neq0$ and $\sqrt{2}=|q/r|$, contradicting the irrationality of $\sqrt{2}$. Thus $q^2-2r^2\neq0$.
+
+This can be simplified by rationalizing:
+\begin{align*}
+\frac{n+m\sqrt{2}}{q+r\sqrt{2}}
+&=\frac{(n+m\sqrt{2})(q-r\sqrt{2})}{(q+r\sqrt{2})(q-r\sqrt{2})}\\
+&= \frac{nq-nr\sqrt{2}+qm\sqrt{2}-2mr}{q^2-2r^2}\\
+&= \frac{nq-2mr}{q^2-2r^2} + \frac{qm-nr}{q^2-2r^2}\sqrt{2}.
+\end{align*}
+Since $nq - 2mr, qm-nr \in \mathbb{Z}$ and $q^2-2r^2$ is a nonzero integer, every element of $F$ has the form $a+b\sqrt{2}$ with $a,b\in\mathbb{Q}$.
+
+Conversely, for any $a,b\in\mathbb{Q}$, choose a common denominator so that $a=s/t$ and $b=u/t$, where $s,u,t\in\mathbb{Z}$ and $t\neq0$. Then
+\begin{align*}
+a+b\sqrt{2}=\frac{s+u\sqrt{2}}{t+0\sqrt{2}}\in F.
+\end{align*}
+Therefore, we can rewrite it to express:
+\begin{align*}
+\boxed{F=\{a+b\sqrt{2}\mid a,b \in \mathbb{Q}\}}
+\end{align*}
+\end{solution}
+\end{problem}
+
+\begin{problem}[21.6]
+Prove Part 2 of Step 3. You may assume any preceding part of Step 3.
+
+\begin{solution}
+WTS. $([(a,b)] + [(c,d)]) + [(e,f)] = [(a,b)] + ([(c,d)] + [(e,f)])$
+\begin{align*}
+    & ([(a,b)] + [(c,d)]) + [(e,f)]\\
+    &= [(ad+bc, bd)] + [(e,f)]\\
+    &= [(((ad + bc)f + ebd), bdf)]\\
+    &= [(adf + bcf + ebd, bdf)]
+\end{align*}
+Also,
+\begin{align*}
+    & [(a,b)] + ([(c,d)] + [(e,f)])\\
+    &= [(a,b)] + [(cf+de, df)]\\
+    &= [(adf+b(cf+de), bdf)]\\
+    &= [(adf+bcf+bde, bdf)].
+\end{align*}
+Since $ebd=bde$, both sides are equal since multiplication in $D$ is commutative.
+\end{solution}
+\end{problem}
+
+\begin{problem}[21.12]
+Let $R$ be a nonzero commutative ring, and let $T$ be a nonempty subset of $R$ closed under multiplication and containing neither $0$ nor divisors of $0$. Starting with $R \times T$ and otherwise exactly following the construction in this section, we can show that the ring $R$ can be enlarged to a partial ring of quotients $Q(R,T)$.
+
+\subsection*{a.}
+$Q(R,T)$ has unity even if $R$ does not.
+
+\begin{solution}
+Since $T$ is nonempty, choose $a \in T$. We also have $a \in R$, since $T \subseteq R$. Thus $(a,a) \in R \times T$. Moreover, $[(a,a)] \cdot [(t,d)] = [(at,ad)]$ for every $t \in R$ and $d \in T$, where $ad \in T$ since $T$ is closed under multiplication.
+Since we can see that $atd = adt$ since $R$ is commutative, we know that $(t,d) \sim (at,ad)$, so $[(t,d)] = [(at,ad)]$.
+This means that $[(a,a)]$ acts as the multiplicative identity in $Q(R,T)$, since $Q(R,T)$ is commutative.
+\end{solution}
+
+\subsection*{b.}
+In $Q(R,T)$, every nonzero element of $T$ is a unit.
+
+\begin{solution}
+We can represent each $r \in R$ in $Q(R,T)$ as $[(rs,s)]$, where $s \in T$. Since $(rs)s' = s(rs')$ for any $s,s' \in T$, we know that $[(rs,s)] = [(rs',s')]$, so this does not depend on the choice of $s$.
+
+$\forall t \in T$, we can represent $t \in Q(R,T)$ as $[(ts,s)]$, where $s \in T$. We know that $[(s,ts)] \in Q(R,T)$ since $s \in R$ by definition and $ts \in T$ because of closure.
+If we compute $[(ts,s)] \cdot [(s,ts)]$, we get $[(tss, sts)] = [(ts^2, ts^2)]$ because of commutativity. For $a \in T$,
+\begin{align*}
+    (ts^2)a = a(ts^2).
+\end{align*}
+This means $(a,a) \sim (ts^2, ts^2)$, so $[(ts^2,ts^2)]$ is the multiplicative identity from part (a).
+
+Therefore, each element of $T$ has a multiplicative inverse, and therefore each element of $T$ is a unit.
+\end{solution}
+\end{problem}
+
+\begin{problem}[21.14]
+With reference to Exercise 12, how many elements are there in the ring $Q(\mathbb{Z}_4, \{1,3\})$?
+
+\begin{solution}
+The following are the elements in the ring $Q(\mathbb{Z}_4, \{1,3\})$. Using $(a,b)\sim(c,d)$ if and only if $ad\equiv bc\pmod{4}$, we get
+\begin{align*}
+    [(0,1)] &= [(0,3)],\\
+    [(1,1)] &= [(3,3)],\\
+    [(1,3)] &= [(3,1)],\\
+    [(2,1)] &= [(2,3)].
+\end{align*}
+Since $a \equiv 9a \pmod{4}$, we know that $(a,3) \sim (3a,1)$. This means that we can represent every class with denominator $1$. We also know that $(a,1) \sim (c,1)$ if and only if $a=c$ in $\mathbb{Z}_4$.
+These four classes are distinct and account for all eight pairs in $\mathbb{Z}_4\times\{1,3\}$.
+\begin{align*}
+\boxed{\text{There are 4 elements in } Q(\mathbb{Z}_4,\{1,3\}).}
+\end{align*}
+\end{solution}
+\end{problem}
+
+\begin{problem}[21.16]
+With reference to Exercise 12, describe the ring $Q(3\mathbb{Z}, \{6^n \mid n \in \mathbb{Z}^+\})$ by describing a subring of $\mathbb{R}$ to which it is isomorphic.
+
+\begin{solution}
+Let $\psi([(3a,6^n)]) = \frac{3a}{6^n}$. Since
+\begin{align*}
+    (3a,6^n) \sim (3b,6^m)
+    &\iff 3a\cdot 6^m = 3b\cdot 6^n\\
+    &\iff \frac{3a}{6^n} = \frac{3b}{6^m},
+\end{align*}
+we know that $\psi$ is well-defined and one-to-one. Since addition and multiplication follow the usual fraction formulas, we also know that $\psi$ is a ring homomorphism.
+
+Every element of the image has the form $m/6^k$ with $m \in \mathbb{Z}$ and $k \in \mathbb{Z}^+$. Since
+\begin{align*}
+    \frac{m}{6^k} = \frac{3(2m)}{6^{k+1}},
+\end{align*}
+we know that every such fraction is also in the image.
+
+Therefore, the given ring is isomorphic to the subring of
+$\mathbb{R}$ consisting of all rational numbers that can be
+written with denominator a power of $6$:
+\[
+    \boxed{\left\{\frac{m}{6^k} \mid m \in \mathbb{Z},\
+    k \in \mathbb{Z}^+\right\}.}
+\]
+\end{solution}
+\end{problem}
+
+\end{document}

@@ -1,0 +1,129 @@
+\documentclass[11pt]{article}
+\usepackage{notes}
+
+\title{21 Notes}
+\author{Jonathan Nguyen}
+\date{}
+
+\begin{document}
+\maketitle
+
+As we know, the additive groups, $\mathbb{Z}_n$ and $\mathbb{Z}/n\mathbb{Z}$ are isomorphic, with the coset $a + n\mathbb{Z}$ corresponding to $a$ for each $a \in \mathbb{Z}_n$. 
+The addition of the cosets in $\mathbb{Z}/n\mathbb{Z}$ can be made by choosing any representatives, adding them in $\mathbb{Z}$, and finding the coset of $n\mathbb{Z}$ containing their sum. 
+It is easy to see that $\mathbb{Z}/n\mathbb{Z}$ can be made into a ring by multiplying cosets in the same fashion, that is, by multiplying any chosen representatives. 
+We can choose representatives $(a+n\mathbb{Z})$ and $b+n\mathbb{Z}$ to show that
+\begin{align*}
+    (a+rn)(b+sn) &= ab+(as+rb+rsn)n\\,
+\end{align*}
+which is also an element of $ab+n\mathbb{Z}$. Thus the multiplication is well-defined, and our cosets form a ring isomorphic to the ring $\mathbb{Z}_n$.
+
+\begin{theorem}
+    For any field, the nonzero elements from a group under multiplication.
+\end{theorem}
+In particular, for $\mathbb{Z}_p$, the elements 
+\begin{align*}
+    1,2,3,...,p-1
+\end{align*}
+form a group of order $p-1$ under multiplication modulo $p$. Since the order of any element must divide the order of the group, we see that for $b \neq 0$, and $b \in \mathbb{Z}_p$, we have 
+$b^{p-1}=1$ in $\mathbb{Z}_p$ since $p$ is prime. Since $\mathbb{Z}_b$ is isomorphic to the ring of cosets of the form $a + p\mathbb{Z}$, we see that for an $a \in \mathbb{Z}$ 
+not in the coset $0 + p\mathbb{Z}$, we must have 
+\begin{align*}
+    a^{p-1} \equiv \pmod{p}.
+\end{align*}
+
+\begin{theorem}
+    ($\textbf{Little Theorem of Fermat}$) If $a \in \mathbb{Z}_p$ and p is a prime not dividing $a$, then $p$ divides $a^{p-1} - 1$, that is, $a^{p-1}\equiv 1 \pmod{p}$ for $a \not\equiv \pmod{p}$.
+\end{theorem}
+
+\begin{corollary}
+    If $a \in \mathbb{Z}$, then $a^p \equiv a \pmod{p}$
+\end{corollary}
+Proof:
+The corollary follows from \textbf{Fermat's Little Theorem} if $a \not\equiv 0 \pmod{p}$. If $a \equiv \pmod{p}$, then both sides reduce to 0 modulo $p$.
+
+\textbf{Example: } Let us compute the remainder of $8^103$ when divided by 13. Using Fermat's theorem, we have
+\begin{align*}
+    8^103 \equiv (8^{12})^8(8^7) \equiv 8^7 \equiv (-5)^7\\
+    \equiv (25)^3(-5) \equiv (-1)^3(-5) \equiv 5 \pmod{3}
+\end{align*}
+
+\textbf{Example: } Show that $2^{11,213} - 1$ is not divisible by 11.
+\begin{align*}
+    2^{11,213} - 1 \equiv 2^3 - 1 \equiv 8 - 1 \equiv 7 \pmod{11}
+\end{align*}
+
+\textbf{Example: } Show that for every integer $n$, the number $n^{33} - n$ is divisible by 15.
+Since 15 is not prime, we can not use Fermat's Little Theorem yet. However, if we prove that it is divisible by each of its prime factors, we can conclude that it is also divisible by 15. 
+First, with mod 3:
+\begin{align*}
+    n^{33} - n \equiv (n^2)^{16}n - n
+\end{align*}
+If $3 \mid n^2$, we know that $3 \mid n$, and that $-n$ also immediately evalues to $0 \pmod{3}$. If $3 \nmid n$, then we can conclude,
+\begin{align*}
+    (n^2)^{16}n - n \equiv n - n \equiv 0 \pmod{3}
+\end{align*}
+
+Now, with mod 5:
+\begin{align*}
+    n^{33} - n \equiv (n^4)^8n - n
+\end{align*}
+Using the same justification above but now applying to modulo 5, we can establish
+\begin{align*}
+    (n^4)^8n  - n \equiv n - n \equiv 0 \pmod{5}
+\end{align*}
+
+Therefore, we can conclude $n^{33} - n$ is divisible by 15, since it is divisble by its prime factorizations.
+
+
+\begin{theorem}
+    The set $G_n$ of nonzero elements of$\mathbb{Z}_n$ that are not 0 divisors forms a group under multiplication modulo $n$.
+\end{theorem}
+\textbf{Proof: }
+Let $a,b \in \mathbb{Z}_n$ be nonzero elements. If $ab \not\in G_n$, we know that $\exists c \in \mathbb{Z}_n$ where $c$ is nonzero, $(ab)c = 0$. 
+By associativity, we know that $a(bc) = 0$. Since $b \in G_n$ and $c \neq 0$, $bc \neq 0$ by defintion of $G_n$. 
+However, this would imply that $a \not\in G_n$, which is a contradiction.
+
+We now show that $G_n$ is a group. Since $\mathbb{Z}_n$ is associative and contains the multiplicative identity, $G_n$ inherits this property. 
+It remains to show inverses. $\forall a, \in G_n, \exists b \in G_n$ such that $ab = 1$. Let 
+
+\begin{align*}
+    1, a_1, ..., a_r
+\end{align*}
+be the elements of $G_n$. The elements 
+\begin{align*}
+    a1, aa_1, ..., aa_r
+\end{align*}
+are all different, for if $aa_i = aa_j$, then $a(a_i - a_j) = 0$, and since $a \in G_n$ and thus is not a divisor of 0. 
+Therefore by counting, we find that either $a1 = 1$, or some $aa_i$ mest be 1, so $a$ has a multiplicative inverse.
+
+Let $n$ be a positive integer. Let $\phi(n)$ be defined as the number of positive integers less than or equal to $n$ and relatively prime to $n$. Note that $\phi(1) = 1$.
+
+\textbf{Example: } Let $n = 12$. The positive integers less than or equal to 12 and relatively prime to 12 are 1, 5, 7, and 11, so $\phi(12) = 4$. By Theorem 19.3, $\phi(n)$ is the number of nonzero elements of $\mathbb{Z}_n$ that are not divisors of 0.
+
+\begin{definition}
+    This function $\phi: \mathbb{Z}^+ \rightarrow \mathbb{Z}^+$ is the \textbf{Euler phi-function}, which describes the number of nonzero elements that are not divisors of 0.
+\end{definition}
+We can now describe Euler's generalization of Fermat's theorem.
+\begin{theorem}
+    \textbf{(Eulers Theorem)} If $a$ is an integer relatively prime to $n$, then $a^{\phi(n)} - 1$ is divisible by $n$, that is, $a^{\phi(n)} \equiv 1 \pmod{n}$.
+\end{theorem}
+\textbf{Proof: } 
+If $a$ is relatively prime to $n$, then the coset $a + n\mathbb{Z}$ of $n\mathbb{Z}$ containing $a$ contains an integer $b < n$ and relatively prime to $n$. Using the fact that multiplication of these cosets by multiplication modulo $n$ of representatives is well-defined, we have 
+\begin{align*}
+    a^{\phi(n)} \equiv b^{\phi(n)} \pmod{n}.
+\end{align*}
+But by theorems 19.3 and 20.6, $b$ can be viewed as an element of the multiplicative group $G_n$ of order $\phi(n)$ consisting of the $\phi(n)$ elements of $\mathbb{Z}_n$ relatively prime to $n$. Thus 
+\begin{align*}
+    b^{\phi(n)} \equiv 1 \pmod{n}.
+\end{align*}
+and our theorem follows.
+
+\textbf{Example: } Let n = 12. We saw in Example 20.7 that $\phi(n) = 4$. Thus if we take any integer $a$ relatively prime to 12, then $a^4 \equiv 1 \pmod{12}$. For example, with $a = 7$, we have $7^4 = 49^2 = 2401 = 12(200) + 1 so 7^4 \equiv 1\pmod{12}$. 
+Of course, the easy way to compute $7^4 \pmod{12}$, whithout Euler's theorem, is to compute it in $\mathbb{Z}_{12}$. In $\mathbb{Z}_{12}$, we have $7=-5$ so 
+\begin{align*}
+    7^2 = (-5)^2 = 5^2 = 1 and 7^4 = 1^2 = 1.
+\end{align*}
+
+Using theorem 20.6, we find all solutions of a linear congurence $ax \equiv b \pmod{m}$. We prefer to work with an equation in $\mathbb{Z}_m$ and interpret the results for congruences.
+
+\end{document}

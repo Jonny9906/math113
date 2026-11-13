@@ -1,0 +1,53 @@
+\documentclass[11pt]{article}
+\usepackage{notes}
+
+\title{22 Notes}
+\author{Jonathan Nguyen}
+\date{}
+
+\begin{document}
+\maketitle
+Given a polynomial in x with coefficients in a ring $R$, we expect the set $R$[$x$] of all polynomials with coefficients in the ring $R$  is a subring of ring $R[x]$ 
+and that the $R$ is a subring of $R[x]$.
+
+\begin{definition}[Intermediate]
+    We describe $x$ as the intermediate in $R[x]$, rather than a variable.
+\end{definition}
+We will spend the rest of the course discussing $x$ as an intermediate rather than a variable to solve for.
+
+
+\begin{definition}[Polynomial]
+    We define a polynomial as the following infinite sum: $\sum_{i = 0}^{\infty}a_ix^i = a_0 + a_1x + ... + a_nx^n$
+\end{definition}
+If we use finite sums instead, we find that we may represent two different polynomials as the same value. For example, $0 + a_1x$ and $0 + a_1x + 0x^2$ are different as formal sums, but if we use a finite sum we regard them as the same polynomial.
+
+\begin{definition}[22.1]
+    Let $R$ be a ring. A \textbf{polynomial} f(x) with coefficients in $R$ is an infinite formnal sum 
+    \begin{align*}
+        \sum_{i = 0}^{\infty}a_ix^i = a_0 + a_1x + ... + a_nx^n +...,
+    \end{align*}
+    where $a_i \in R$ and $a_i = 0$ for all but a finite number of values of $i$. The $a_i$ are \textbf{coefficients} of $f(x)$.
+    The \textbf{degree} of the polynomial is the greatest $i$ such that $a_i \neq 0$.
+\end{definition}
+
+For simplicity, we omit all terms $a_ix^i$ when it is after the last nonzero value of $a_n$ as a unique term when $i>n$. 
+If $R$ has unity $1 \neq 0$, we will write a term $1x^k$ in such a sum as $x^k$. 
+An element of $R$ is a constant polynomial. Addition and multiplication of polynomials with coefficients in a ring $R$ are defined trivially. 
+for mutltiplication, $f(x) + g(x) = (a_0 + b_0) + (a_1 + b_1)x + ... $ and multiplication is defined as $\sum_{i = 0}^{n}a_ib_{n - i}$\\
+Observe that the summation and multiplication are 0 for all but a finite number of values of i.
+
+\begin{theorem}
+    The set $R[x]$ of all polynomials in an intermediate x with coefficients in a ring $R$ is a ring under polynomial addition and multiplication.
+\end{theorem}
+Proof:
+\begin{align*}
+    [(\sum_{i = 0}^{\infty}a_ix^i)(\sum_{j = 0}^{\infty}b_jx^j)](\sum_{k = 0}^{\infty}c_kx^k) &= [\sum_{n = 0}^{\infty}(\sum_{i = 0}^{a_ib_{n-i}})x^n](\sum_{k = 0}^{\infty}c_kx^k)\\
+    &= \sum_{s = 0}^{\infty}[\sum_{n = 0}^{\infty}(\sum_{i = 0}^{\infty}a_ib_{n-i})c_{s-n}]x^s\\
+    &= \sum_{s=0}^{\infty}(\sum_{i + j + k}^{\infty}a_ib_jc_k)x^s\\
+    &= \sum_{s=0}^{\infty}[\sum_{m=0}^{s}a_{s-m}(\sum_{j=0}^{m}b_jc_{m-j})]x^s\\
+    &= (\sum_{i = 0}^{\infty}a_ix^i)[\sum_{m=0}^{\infty}(\sum_{j=0}^{m}b_jc_{m-j})x^m]\\
+    &= (\sum_{i = 0}^{\infty}a_ix^i)[(\sum_{j = 0}^{\infty}b_jx^j)(\sum_{k = 0}^{\infty}c_kx^k)]
+\end{align*}
+
+
+\end{document}

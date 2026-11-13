@@ -1,0 +1,250 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+
+\title{Homework 8}
+\author{Jonathan Nguyen}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{19.4}
+Find all solutions of \(x^2+2x+4=0\) in \(\mathbb{Z}_{6}\).
+
+\noindent\textbf{Solution.}
+We test each element of \(\mathbb{Z}_{6}\):
+\[
+\begin{aligned}
+x=0: &\quad 0+0+4=4 \equiv 4 \pmod{6},\\
+x=1: &\quad 1+2+4=7 \equiv 1 \pmod{6},\\
+x=2: &\quad 4+4+4=12 \equiv 0 \pmod{6},\\
+x=3: &\quad 9+6+4=19 \equiv 1 \pmod{6},\\
+x=4: &\quad 16+8+4=28 \equiv 4 \pmod{6},\\
+x=5: &\quad 25+10+4=39 \equiv 3 \pmod{6}.
+\end{aligned}
+\]
+Therefore, the only solution in \(\mathbb{Z}_{6}\) is \(\boxed{x=2}.\)
+
+\section*{19.10}
+Find the characteristic of the ring
+\(\mathbb{Z}_{6}\times\mathbb{Z}_{15}\).
+
+\noindent\textbf{Solution.}
+The ring \(\mathbb{Z}_{6}\times\mathbb{Z}_{15}\) has unity \((1,1)\).
+For a ring with unity, the characteristic is the least positive integer
+\(n\) such that \(n\cdot(\text{unity})=0\), so we need the least
+positive \(n\) with \(n(1,1)=(0,0)\). Since
+\[
+n(1,1)=(n\cdot1,\;n\cdot1),
+\]
+this holds exactly when \(n\cdot1=0\) in \(\mathbb{Z}_6\) and
+\(n\cdot1=0\) in \(\mathbb{Z}_{15}\), that is, when \(6\mid n\) and
+\(15\mid n\). The least such \(n\) is
+\[
+\boxed{
+\operatorname{char}(\mathbb{Z}_{6}\times\mathbb{Z}_{15})
+=\operatorname{lcm}(6,15)=30.
+}
+\]
+
+\section*{19.23}
+An element \(a\) of a ring \(R\) is idempotent if \(a^2=a\).
+Show that a division ring contains exactly two idempotent elements.
+
+\noindent\textbf{Solution.}
+Let \(R\) be a division ring. Both \(0_R\) and \(1_R\) are idempotent,
+since \(0_R^2=0_R\) and \(1_R^2=1_R\).
+
+Now suppose \(a\in R\) is idempotent and \(a\neq0_R\). Since \(R\) is a
+division ring, \(a\) has a multiplicative inverse \(a^{-1}\).
+Multiplying both sides of \(a^2=a\) on the left by \(a^{-1}\) gives
+\[
+\begin{aligned}
+a^{-1}(aa)&=a^{-1}a,\\
+(a^{-1}a)a&=1_R,\\
+1_R\,a&=1_R,\\
+a&=1_R.
+\end{aligned}
+\]
+Thus every idempotent element of \(R\) is either \(0_R\) or \(1_R\).
+Since \(0_R\neq1_R\) in a division ring, these are two distinct elements,
+so \(R\) contains exactly two idempotent elements.
+
+\section*{19.26}
+Let \(R\) be a ring that contains at least two elements. Suppose that
+for each nonzero \(a\in R\), there exists a unique \(b\in R\) such that
+\(aba=a\).
+
+\subsection*{(a) Show that \(R\) has no divisors of \(0\).}
+\noindent\textbf{Solution.}
+Let \(a\in R\) be nonzero, and suppose \(ac=0\) for some \(c\in R\).
+Let \(b\) be the unique element of \(R\) such that \(aba=a\).
+Since \(aca=(ac)a=0\cdot a=0\),
+\[
+a(b+c)a=aba+aca=a+0=a.
+\]
+So \(b+c\) also satisfies the defining equation for \(a\).
+By uniqueness, \(b+c=b\), and hence \(c=0\).
+
+We have shown that if \(a\neq0\) and \(ac=0\), then \(c=0\). So there
+are no nonzero \(a,c\in R\) with \(ac=0\), which means \(R\) has no
+divisors of \(0\). Equivalently, if \(xy=0\) in \(R\), then \(x=0\) or
+\(y=0\).
+
+\subsection*{(b) Show that \(bab=b\).}
+\noindent\textbf{Solution.}
+Let \(a\neq0\), and let \(b\) be the unique element with \(aba=a\).
+Multiplying \(aba=a\) on the right by \(b\) gives \(abab=ab\).
+Hence
+\[
+a(bab-b)=abab-ab=ab-ab=0.
+\]
+Since \(a\neq0\) and \(R\) has no divisors of \(0\) by part (a),
+\(bab-b=0\). Therefore,
+\[
+\boxed{bab=b.}
+\]
+
+\subsection*{(c) Show that \(R\) has unity.}
+\noindent\textbf{Solution.}
+Since \(R\) contains at least two elements, there is a nonzero
+\(a\in R\). Let \(b\) be the unique element with \(aba=a\), and set
+\(e=ab\). Then
+\[
+ea=(ab)a=aba=a\neq0,
+\]
+so \(e\neq0\) (if \(e=0\), then \(ea=0\)). Also,
+\[
+e^2=(ab)(ab)=(aba)b=ab=e.
+\]
+Now let \(x\in R\) be arbitrary. Using \(e^2=e\),
+\[
+e(ex-x)=e^2x-ex=ex-ex=0.
+\]
+Since \(e\neq0\) and \(R\) has no divisors of \(0\) by part (a),
+\(ex-x=0\), so \(ex=x\). Similarly,
+\[
+(xe-x)e=xe^2-xe=xe-xe=0,
+\]
+and since \(e\neq0\), \(xe-x=0\), so \(xe=x\).
+Thus \(ex=xe=x\) for every \(x\in R\), so \(e\) is a unity of \(R\).
+
+\subsection*{(d) Show that \(R\) is a division ring.}
+\noindent\textbf{Solution.}
+By part (c), \(R\) has unity, which we denote by \(1_R\).
+Since \(R\) has at least two elements, \(1_R\neq0\): otherwise every
+\(x\in R\) would satisfy \(x=x\cdot1_R=x\cdot0=0\), so \(R=\{0\}\).
+
+Now let \(a\in R\) be any nonzero element, and let \(b\) be the unique
+element with \(aba=a\). Then
+\[
+a(ba-1_R)=aba-a=0
+\quad\text{and}\quad
+(ab-1_R)a=aba-a=0.
+\]
+Since \(a\neq0\) and \(R\) has no divisors of \(0\) by part (a),
+\(ba-1_R=0\) and \(ab-1_R=0\), so
+\[
+ab=ba=1_R.
+\]
+Thus \(b=a^{-1}\), and every nonzero element of \(R\) has a
+multiplicative inverse. Since \(R\) is a ring with unity \(1_R\neq0\)
+in which every nonzero element has a multiplicative inverse, \(R\) is a
+division ring.
+
+\section*{20.2}
+Find a generator of the multiplicative group of nonzero elements
+of \(\mathbb{Z}_{11}\).
+
+\noindent\textbf{Solution.}
+Since \(11\) is prime, \(\mathbb{Z}_{11}\) is a field, so its nonzero
+elements form a group \(\mathbb{Z}_{11}\setminus\{0\}\) under
+multiplication, and this group has order \(10\).
+By Lagrange's theorem, the order of \(2\) in this group divides \(10\),
+so it is \(1,2,5,\) or \(10\). We compute
+\[
+2^2=4\not\equiv1\pmod{11}
+\quad\text{and}\quad
+2^5=32=2(11)+10\equiv10\not\equiv1\pmod{11}.
+\]
+If \(2\) had order \(1\) or \(2\), then \(2^2\equiv1\pmod{11}\); if it had
+order \(5\), then \(2^5\equiv1\pmod{11}\). Neither holds, so \(2\) has
+order \(10\). Since the group has order \(10\), the cyclic subgroup
+generated by \(2\) is the whole group. Therefore, \(2\) generates
+\(\mathbb{Z}_{11}\setminus\{0\}\):
+\[
+\boxed{\langle 2\rangle=\mathbb{Z}_{11}\setminus\{0\}.}
+\]
+
+\section*{20.4}
+Use Fermat's theorem to find the remainder of \(3^{47}\)
+when it is divided by \(23\).
+
+\noindent\textbf{Solution.}
+Since \(23\) is prime and \(23\nmid3\), Fermat's little theorem gives
+\[
+3^{22}\equiv1\pmod{23}.
+\]
+Since \(47=2(22)+3\),
+\[
+3^{47}=(3^{22})^2\cdot 3^3
+\equiv1^2\cdot27
+=27
+\equiv4\pmod{23},
+\]
+because \(27=23+4\). Since \(0\le4<23\), the remainder is
+\(\boxed{4}\).
+
+\section*{20.12}
+Describe all the solutions of \(22x\equiv5\pmod{15}\).
+
+\noindent\textbf{Solution.}
+Since \(22=15+7\), we have \(22\equiv7\pmod{15}\), so the congruence
+becomes
+\[
+7x\equiv5\pmod{15}.
+\]
+Since \(\gcd(7,15)=1\), \(7\) has a multiplicative inverse modulo
+\(15\). Indeed, \(7(13)=91=6(15)+1\equiv1\pmod{15}\).
+Multiplying both sides by \(13\) gives
+\[
+\begin{aligned}
+13(7x)&\equiv13(5)\pmod{15},\\
+91x&\equiv65\pmod{15},\\
+x&\equiv65\pmod{15},\\
+x&\equiv5\pmod{15},
+\end{aligned}
+\]
+using \(91\equiv1\) and \(65=4(15)+5\). Multiplying by \(13\) can be
+undone by multiplying by \(7\), so each step is reversible and these are
+exactly the solutions. As a check, \(22(5)=110=7(15)+5\equiv5\pmod{15}\).
+Thus, all integer solutions are
+\[
+\boxed{x=5+15k,\qquad k\in\mathbb{Z}.}
+\]
+
+\section*{20.27}
+Show that $1$ and $p - 1$ are the only elements of the field
+$\mathbb{Z}_p$ that are their own multiplicative inverse.
+
+\noindent\textbf{Solution.}
+An element $x \in \mathbb{Z}_p$ is its own multiplicative inverse exactly
+when $x \cdot x = 1$, that is, when $x^2 = 1$. Thus
+\begin{align*}
+    x^2 - 1 &= (x + 1)(x - 1) = 0.
+\end{align*}
+Since $\mathbb{Z}_p$ is a field, it is an integral domain and has no
+divisors of zero, so $x + 1 = 0$ or $x - 1 = 0$.
+In $\mathbb{Z}_p$, this means $x = -1 = p - 1$ or $x = 1$.
+
+Conversely, both of these elements are their own inverses:
+$1 \cdot 1 = 1$, and
+\begin{align*}
+    (p - 1)^2 &= p^2 - 2p + 1 \equiv 1 \pmod{p}.
+\end{align*}
+Therefore, $1$ and $p - 1$ are the only elements of $\mathbb{Z}_p$ that
+are their own multiplicative inverse. (When $p = 2$, these are the same
+element, since $p - 1 = 1$.)
+
+\end{document}
