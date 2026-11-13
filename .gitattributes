@@ -1,0 +1,3 @@
+# LaTeX build outputs: store as-is, no line-ending conversion
+*.aux -text
+*.log -text
