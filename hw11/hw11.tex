@@ -12,9 +12,93 @@
     Give addition and multiplication tables for $2\mathbb{Z}/8\mathbb{Z}$. Are $2\mathbb{Z}/8\mathbb{Z}$ and $\mathbb{Z}_4$ isomorphic?
 \end{problem}
 \begin{solution}
-    The order of the factor group is 4, while the order of $4\mathbb{Z}$ is infnite. Therefore there can not exist a bijection due to difference in order, and in turn $2\mathbb{Z}/8\mathbb{Z} \not\cong 4\mathbb{Z}$.
+    \[
+\begin{array}{c|cccc}
++ & \overline{0} & \overline{2} & \overline{4} & \overline{6} \\
+\hline
+\overline{0} & \overline{0} & \overline{2} & \overline{4} & \overline{6} \\
+\overline{2} & \overline{2} & \overline{4} & \overline{6} & \overline{0} \\
+\overline{4} & \overline{4} & \overline{6} & \overline{0} & \overline{2} \\
+\overline{6} & \overline{6} & \overline{0} & \overline{2} & \overline{4}
+\end{array}
+\qquad
+\begin{array}{c|cccc}
+\cdot & \overline{0} & \overline{2} & \overline{4} & \overline{6} \\
+\hline
+\overline{0} & \overline{0} & \overline{0} & \overline{0} & \overline{0} \\
+\overline{2} & \overline{0} & \overline{4} & \overline{0} & \overline{4} \\
+\overline{4} & \overline{0} & \overline{0} & \overline{0} & \overline{0} \\
+\overline{6} & \overline{0} & \overline{4} & \overline{0} & \overline{4}
+\end{array}
+\]
+    From the multiplication table, we know that the products of elements in
+    $2\mathbb{Z}/8\mathbb{Z}$ can only be $\overline{0}$ or $\overline{4}$.
+    In $\mathbb{Z}_4$, we can get all four elements as products by
+    multiplying each element by $1$. Therefore there cannot exist a
+    bijection that preserves multiplication, and in turn
+$2\mathbb{Z}/8\mathbb{Z} \not\cong \mathbb{Z}_4$.
 \end{solution}
-\begin{problem}
+\begin{problem}[26.18]
+    Show that each homomorphism from a field to a ring is either one to one or maps everything onto 0.
+\end{problem}
+\begin{solution}
+    Let $\phi$ be a ring homomorphism from $F$ to a ring, and let
+    $I = \ker(\phi)$, which is an ideal. If $I$ is the trivial ideal
+    $\{0\}$, then we know $\phi$ is injective.
+
+    Let $0 \neq a \in I$. By defintion, we know that $a^{-1} \in F$.
+    Since, we must satisfy that $a^{-1}I \subseteq I$, we can conclude
+    $1 \in I$. Since $1 \in I$, we know that all elements in $F$ are
+    also in $I$. Therefore, $I = F$ and $\phi$ maps every element of
+    $F$ to $0$.
+\end{solution}
+
+\begin{problem}[22.20]
+    Let $R$ be a commutative ring with unity of prime characteristic $p$.
+    Show that the map $\phi_p: R \rightarrow R$ given by
+    $\phi_p(a) = a^p$ is a homomorphism (the \textbf{Frobenius homomorphism}).
+\end{problem}
+\begin{solution}
+    \[
+    \phi_p(ab) = (ab)^p = a^p b^p = \phi_p(a)\phi_p(b)
+    \]
+    We now want to show that $\phi_p(a + b) = \phi_p(a) + \phi_p(b)$.
+    \begin{align*}
+        \phi_p(a + b) &= (a+b)^p \\
+        &= C(p,0)a^p + C(p,1)a^{p-1}b + \cdots + C(p, p - 1)ab^{p-1} + C(p,p)b^p
+    \end{align*}
+    Since $C(p,k) = \frac{p!}{k!(p-k)!}$ and $p$ divides $p!$, but not $k!$ or $(p-k)!$ when $0 < k < p$. Thus $C(p,k) \equiv 0 \pmod{p}$ when $k \neq 0, p$, so it does not contribute to the binomial expansion. Since $p$ is the characteristic, any element multiplied by $p$ is 0. Therfore, 
+    \begin{align*}
+        (a+b)^p &= a^p + b^p\\
+        &= \phi_p(a) + \phi_p(b)
+    \end{align*}
+    Therefore $\phi_p$ is a homomorphism.
+\end{solution}
+\begin{problem}[26.30]
+    An element $a$ of a ring $R$ is nilpotent if $a^n = 0$ for some $n \in \mathbb{Z}^+$. Show that the collection of nilpotent elements in a commutative ring $R$ is an ideal, the \textbf{nilradical of} $R$.
     
 \end{problem}
+\begin{solution}
+    We must show that the collection of nilpotent elements in the commutative ring $R$ forms an additive subgroup such that $aI \subseteq I$ for all $a \in R$.
+
+    Let $a \in I$ be a an element from the nilpotent set $I$ where $a^n = 0$, and $b$ an element from $R$.
+    \begin{align*}
+        (ab)^n = a^nb^n = 0(b^n) = 0
+    \end{align*}
+    Therefore multiplying any element in the ring $R$ with a nilpotent element is also nilpotent, meaning that $aI \subseteq I$ for all $a \in R$.
+
+    Now we must show that if $a,b \in I$, then $a + b \in I$. Let $l = n + k$ where $a^n = 0$ and $b^k = 0$. We can use binomial expanision to express $(a+b)^l = \sum_{r = 0}^{l}C(l, r)a^{l-r}b^r$. For the terms where $l-r \geq n$, we can rewrite the term as 
+    \begin{align*}
+        C(l, r)a^{l-r}b^r = C(l,r)a^na^{l-r-n}b^r = C(l,r)(0)a^{l-r-n}b^r = 0
+    \end{align*}
+    When $l-r < n$, we know that $r > k$ so we can rewrite those terms as 
+    \begin{align*}
+        C(l, r)a^{l-r}b^r = C(l,r)a^{l-r}b^kb^{r-k} = C(l,r)a^{l-r}(0)b^{r-k} = 0
+    \end{align*}
+    Since all terms evaluate to 0, $(a+b)^l=0$ and therefore, $a+b \in I$.
+    
+    Let $a$ be nilpotent where $a^n = 0$. $(-a)^n = (-1)^n(a)^n = (-1)^n(0) = 0$. Therefore $I$ contains additive inverses. $0^1 = 0$, meaning that the additive identity is also in $I$.
+
+    Thus, the nilpotent elements from a commutative ring $R$ form an ideal.
+\end{solution}
 \end{document}
