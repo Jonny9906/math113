@@ -46,14 +46,14 @@ $2\mathbb{Z}/8\mathbb{Z} \not\cong \mathbb{Z}_4$.
     $I = \ker(\phi)$, which is an ideal. If $I$ is the trivial ideal
     $\{0\}$, then we know $\phi$ is injective.
 
-    Let $0 \neq a \in I$. By defintion, we know that $a^{-1} \in F$.
-    Since, we must satisfy that $a^{-1}I \subseteq I$, we can conclude
+    Let $0 \neq a \in I$. By definition, we know that $a^{-1} \in F$.
+    Since we must satisfy that $a^{-1}I \subseteq I$, we can conclude
     $1 \in I$. Since $1 \in I$, we know that all elements in $F$ are
     also in $I$. Therefore, $I = F$ and $\phi$ maps every element of
     $F$ to $0$.
 \end{solution}
 
-\begin{problem}[22.20]
+\begin{problem}[26.20]
     Let $R$ be a commutative ring with unity of prime characteristic $p$.
     Show that the map $\phi_p: R \rightarrow R$ given by
     $\phi_p(a) = a^p$ is a homomorphism (the \textbf{Frobenius homomorphism}).
@@ -67,7 +67,7 @@ $2\mathbb{Z}/8\mathbb{Z} \not\cong \mathbb{Z}_4$.
         \phi_p(a + b) &= (a+b)^p \\
         &= C(p,0)a^p + C(p,1)a^{p-1}b + \cdots + C(p, p - 1)ab^{p-1} + C(p,p)b^p
     \end{align*}
-    Since $C(p,k) = \frac{p!}{k!(p-k)!}$ and $p$ divides $p!$, but not $k!$ or $(p-k)!$ when $0 < k < p$. Thus $C(p,k) \equiv 0 \pmod{p}$ when $k \neq 0, p$, so it does not contribute to the binomial expansion. Since $p$ is the characteristic, any element multiplied by $p$ is 0. Therfore, 
+    Since $C(p,k) = \frac{p!}{k!(p-k)!}$ and $p$ divides $p!$, but not $k!$ or $(p-k)!$ when $0 < k < p$. Thus $C(p,k) \equiv 0 \pmod{p}$ when $k \neq 0, p$, so it does not contribute to the binomial expansion. Since $p$ is the characteristic, any element multiplied by $p$ is 0. Therefore,
     \begin{align*}
         (a+b)^p &= a^p + b^p\\
         &= \phi_p(a) + \phi_p(b)
@@ -79,15 +79,15 @@ $2\mathbb{Z}/8\mathbb{Z} \not\cong \mathbb{Z}_4$.
     
 \end{problem}
 \begin{solution}
-    We must show that the collection of nilpotent elements in the commutative ring $R$ forms an additive subgroup such that $aI \subseteq I$ for all $a \in R$.
+    We must show that the collection of nilpotent elements in the commutative ring $R$ forms an additive subgroup such that $bI \subseteq I$ for all $b \in R$.
 
-    Let $a \in I$ be a an element from the nilpotent set $I$ where $a^n = 0$, and $b$ an element from $R$.
+    Let $a \in I$ be an element from the nilpotent set $I$ where $a^n = 0$, and $b$ an element from $R$.
     \begin{align*}
         (ab)^n = a^nb^n = 0(b^n) = 0
     \end{align*}
-    Therefore multiplying any element in the ring $R$ with a nilpotent element is also nilpotent, meaning that $aI \subseteq I$ for all $a \in R$.
+    Therefore multiplying any element in the ring $R$ with a nilpotent element is also nilpotent, meaning that $bI \subseteq I$ for all $b \in R$.
 
-    Now we must show that if $a,b \in I$, then $a + b \in I$. Let $l = n + k$ where $a^n = 0$ and $b^k = 0$. We can use binomial expanision to express $(a+b)^l = \sum_{r = 0}^{l}C(l, r)a^{l-r}b^r$. For the terms where $l-r \geq n$, we can rewrite the term as 
+    Now we must show that if $a,b \in I$, then $a + b \in I$. Let $l = n + k$ where $a^n = 0$ and $b^k = 0$. We can use binomial expansion to express $(a+b)^l = \sum_{r = 0}^{l}C(l, r)a^{l-r}b^r$. For the terms where $l-r \geq n$, we can rewrite the term as 
     \begin{align*}
         C(l, r)a^{l-r}b^r = C(l,r)a^na^{l-r-n}b^r = C(l,r)(0)a^{l-r-n}b^r = 0
     \end{align*}
@@ -97,7 +97,7 @@ $2\mathbb{Z}/8\mathbb{Z} \not\cong \mathbb{Z}_4$.
     \end{align*}
     Since all terms evaluate to 0, $(a+b)^l=0$ and therefore, $a+b \in I$.
     
-    Let $a$ be nilpotent where $a^n = 0$. $(-a)^n = (-1)^n(a)^n = (-1)^n(0) = 0$. Therefore $I$ contains additive inverses. $0^1 = 0$, meaning that the additive identity is also in $I$.
+    Let $a$ be nilpotent where $a^n = 0$. $(-a)^n$ equals either $a^n$ or $-a^n$, so $(-a)^n = 0$. Therefore $I$ contains additive inverses. $0^1 = 0$, meaning that the additive identity is also in $I$.
 
     Thus, the nilpotent elements from a commutative ring $R$ form an ideal.
 \end{solution}
@@ -109,6 +109,7 @@ $2\mathbb{Z}/8\mathbb{Z} \not\cong \mathbb{Z}_4$.
 \[
 \boxed{\text{The prime and maximal ideals of $\mathbb{Z}_{12}$ are $(2)$ and $(3)$.}}
 \]
+    Every ideal is $(d)$ for some positive $d \mid 12$, with $\mathbb{Z}_{12}/(d) \cong \mathbb{Z}_d$. The quotient is an integral domain or a field exactly when $d=2,3$. Since $(d)$ is prime if and only if the quotient is an integral domain (Theorem 27.15) and maximal if and only if the quotient is a field (Theorem 27.9), $(2)$ and $(3)$ are the only prime ideals and the only maximal ideals.
 \end{solution}
 
 \begin{problem}[27.8]
@@ -135,7 +136,7 @@ $2\mathbb{Z}/8\mathbb{Z} \not\cong \mathbb{Z}_4$.
 \end{solution}
 
 \begin{problem}[27.28]
-    Prove directly from the defintions of maximal and prime ideals that every maximal ideal of a commutative ring $R$ with unity is a prime ideal. [Hint: Suppose $M$ is a maximal in $R$, $ab \in M$, and $a \not\in M$. Argue that the smallest ideal $\{ra + m \mid r \in R, m \in M\}$ containing $a$ and $M$ must contain 1. Express 1 as $ra + m$ and multiply by $b$.]
+    Prove directly from the definitions of maximal and prime ideals that every maximal ideal of a commutative ring $R$ with unity is a prime ideal. [Hint: Suppose $M$ is maximal in $R$, $ab \in M$, and $a \not\in M$. Argue that the smallest ideal $\{ra + m \mid r \in R, m \in M\}$ containing $a$ and $M$ must contain 1. Express 1 as $ra + m$ and multiply by $b$.]
 \end{problem}
 \begin{solution}
     Suppose $M$ is a maximal ideal in $R$, where $ab \in M$, and $a \not\in M$.
