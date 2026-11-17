@@ -101,4 +101,51 @@ $2\mathbb{Z}/8\mathbb{Z} \not\cong \mathbb{Z}_4$.
 
     Thus, the nilpotent elements from a commutative ring $R$ form an ideal.
 \end{solution}
+
+\begin{problem}[27.2]
+    Find all prime ideals and all maximal ideals of $\mathbb{Z}_{12}$
+\end{problem}
+\begin{solution}
+\[
+\boxed{\text{The prime and maximal ideals of $\mathbb{Z}_{12}$ are $(2)$ and $(3)$.}}
+\]
+\end{solution}
+
+\begin{problem}[27.8]
+    Find all $c \in \mathbb{Z}_5$ such that $\mathbb{Z}_5[x]/ \langle x^2 + x + c\rangle$ is a field.
+\end{problem}
+\begin{solution}
+    Let $f(x) = x^2 + x + c$
+    \begin{align*}
+        f(0) = 0 + c \rightarrow c = 0\\
+        f(1) = 2 + c \rightarrow c = 3\\
+        f(2) = 1 + c \rightarrow c = 4\\
+        f(3) = 2 + c \rightarrow c = 3\\
+        f(4) = c \rightarrow c = 0
+    \end{align*}
+    Since $f(x)$ is quadratic and has no zeros in $\mathbb{Z}_5$ exactly
+    when $c=1,2$, it is irreducible over $\mathbb{Z}_5$ for those values.
+    By Theorem 27.25, $\langle f(x)\rangle$ is therefore maximal in
+    $\mathbb{Z}_5[x]$ exactly when $c=1,2$. Thus
+    $\mathbb{Z}_5[x]/\langle f(x)\rangle$ is a field exactly when
+    \[
+        \boxed{c=1,2}.
+    \]
+\end{solution}
+
+\begin{problem}[27.28]
+    Prove directly from the defintions of maximal and prime ideals that every maximal ideal of a commutative ring $R$ with unity is a prime ideal. [Hint: Suppose $M$ is a maximal in $R$, $ab \in M$, and $a \not\in M$. Argue that the smallest ideal $\{ra + m \mid r \in R, m \in M\}$ containing $a$ and $M$ must contain 1. Express 1 as $ra + m$ and multiply by $b$.]
+\end{problem}
+\begin{solution}
+    suppose $M$ is a maximal ideal in $R$, where $ab \in M$, and $a \not\in M$
+\end{solution}
+\begin{problem}[27.30]
+    Prove that if $F$ is a field, every proper nontrivial prime ideal of $F[x]$ is maximal.
+\end{problem}
+\begin{solution}
+    Let $F$ be a field and let $\langle p(x)\rangle$ be a proper nontrivial prime ideal of $F[x]$. We can write the ideal this way since every ideal of $F[x]$ is principal.
+
+    Suppose $a,b \in F[x]$ satisfy $ab = p(x)$ and both have smaller degree than $p(x)$. Since $ab = p(x) \in \langle p(x)\rangle$, by the definition of a prime ideal, either $a$ or $b$ must be in $\langle p(x)\rangle$. This is a contradiction because every nonzero multiple of $p(x)$ has degree at least $\deg p(x)$. Therefore, $p(x)$ is irreducible. Thus, by Theorem 27.25, we can conclude that $\langle p(x)\rangle$ is a maximal ideal of $F[x]$.
+\end{solution}
+
 \end{document}
