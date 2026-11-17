@@ -117,16 +117,17 @@ $2\mathbb{Z}/8\mathbb{Z} \not\cong \mathbb{Z}_4$.
 \begin{solution}
     Let $f(x) = x^2 + x + c$
     \begin{align*}
-        f(0) = 0 + c \rightarrow c = 0\\
-        f(1) = 2 + c \rightarrow c = 3\\
-        f(2) = 1 + c \rightarrow c = 4\\
-        f(3) = 2 + c \rightarrow c = 3\\
-        f(4) = c \rightarrow c = 0
+        f(0) = 0 + c = 0 \iff c = 0\\
+        f(1) = 2 + c = 0 \iff c = 3\\
+        f(2) = 1 + c = 0 \iff c = 4\\
+        f(3) = 2 + c = 0 \iff c = 3\\
+        f(4) = c = 0 \iff c = 0
     \end{align*}
     Since $f(x)$ is quadratic and has no zeros in $\mathbb{Z}_5$ exactly
-    when $c=1,2$, it is irreducible over $\mathbb{Z}_5$ for those values.
+    when $c=1,2$, it is irreducible over $\mathbb{Z}_5$ for those values
+    by Theorem 23.10.
     By Theorem 27.25, $\langle f(x)\rangle$ is therefore maximal in
-    $\mathbb{Z}_5[x]$ exactly when $c=1,2$. Thus
+    $\mathbb{Z}_5[x]$ exactly when $c=1,2$. Thus, by Theorem 27.9,
     $\mathbb{Z}_5[x]/\langle f(x)\rangle$ is a field exactly when
     \[
         \boxed{c=1,2}.
@@ -137,7 +138,28 @@ $2\mathbb{Z}/8\mathbb{Z} \not\cong \mathbb{Z}_4$.
     Prove directly from the defintions of maximal and prime ideals that every maximal ideal of a commutative ring $R$ with unity is a prime ideal. [Hint: Suppose $M$ is a maximal in $R$, $ab \in M$, and $a \not\in M$. Argue that the smallest ideal $\{ra + m \mid r \in R, m \in M\}$ containing $a$ and $M$ must contain 1. Express 1 as $ra + m$ and multiply by $b$.]
 \end{problem}
 \begin{solution}
-    suppose $M$ is a maximal ideal in $R$, where $ab \in M$, and $a \not\in M$
+    Suppose $M$ is a maximal ideal in $R$, where $ab \in M$, and $a \not\in M$.
+    Let $I = \{ra + m \mid r \in R, m \in M\}$.
+    We have $0 = 0a + 0 \in I$. Since $M$ is an additive group,
+    $m + m' \in M$ and $-m \in M$. Therefore,
+    \begin{align*}
+        (ra + m) + (r'a + m') &= (r + r')a + (m + m') \in I,\\
+        -(ra + m) &= (-r)a + (-m) \in I.
+    \end{align*}
+    Thus $I$ is an additive subgroup of $R$. For any $s \in R$,
+    $s(ra + m) = (sr)a + sm \in I$ since $sm \in M$.
+    Therefore, $I$ is an ideal.
+
+    Since $m = 0a + m \in I$ for every $m \in M$ and
+    $a = 1a + 0 \in I$, we have $M \subsetneq I$ because
+    $a \not\in M$. Since $M$ is maximal, $I = R$, so $1 \in I$.
+    If we express $1$ as $ra + m$ and multiply by $b$, we get
+    \begin{align*}
+        b = b \cdot 1 = b(ra + m) = (br)a + bm = r(ab) + bm.
+    \end{align*}
+    Since $ab \in M$ and $m \in M$, we have $r(ab) + bm \in M$.
+    Since $b = r(ab) + bm$, it follows that $b \in M$.
+    Therefore, all maximal ideals are prime ideals in commutative rings with unity.
 \end{solution}
 \begin{problem}[27.30]
     Prove that if $F$ is a field, every proper nontrivial prime ideal of $F[x]$ is maximal.
